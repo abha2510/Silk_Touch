@@ -20,7 +20,7 @@ app.get("/", (req, res) => {
   });
 
 app.use("/users", userRouter);
-app.use("/admin", adminRoute)
+app.use("/admins", adminRoute)
 app.get("/usersdata", async (req, res) => {
     try {
         let users = await UserModel.find()

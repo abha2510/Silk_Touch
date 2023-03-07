@@ -9,8 +9,8 @@ const adminSchema = mongoose.Schema({
     phoneNumber:Number
 })
 
-const adminModel = mongoose.model("admins", adminSchema)
+const AdminModel = mongoose.model("admin", adminSchema)
 
 module.exports = {
-    adminModel
+    AdminModel
 }

@@ -1,5 +1,5 @@
 const express = require("express")
-const { adminModel } = require("../models/admin.model")
+const { AdminModel } = require("../model/Admin.Model")
 const jwt = require("jsonwebtoken")
 const bcrypt = require('bcrypt');
 
@@ -17,7 +17,7 @@ adminRoute.post("/register", async (req, res) => {
                 if (err) {
                     res.send("Something went wrong")
                 } else {
-                    const admin = new adminModel({ name, image, email, password: hash, gender, phoneNumber })
+                    const admin = new AdminModel({ name, image, email, password: hash, gender, phoneNumber })
                     await admin.save()
                     res.send({ "msg": "new admin has been register" })
                 }
@@ -32,7 +32,7 @@ adminRoute.post("/register", async (req, res) => {
 adminRoute.post("/login", async (req, res) => {
     const { email, password } = req.body
     try {
-        const admin = await adminModel.find({ email })
+        const admin = await AdminModel.find({ email })
         if (admin.length > 0) {
             bcrypt.compare(password, admin[0].password, (err, result) => {
                 if (result) {
