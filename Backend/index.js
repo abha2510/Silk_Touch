@@ -7,6 +7,8 @@ const {userRouter}=require("./routes/User.Route");
 const {cartRoute}=require("./routes/Cart.Route");
 const {wishlistRoute}=require("./routes/Wishlist.Route")
 const cors=require("cors");
+const { adminRoute } = require("./routes/Admin.Route");
+const { UserModel } = require("./model/User.Model");
 const app=express();
 
 app.use(express.json());
@@ -21,7 +23,7 @@ app.use("/users", userRouter);
 app.use("/admin", adminRoute)
 app.get("/usersdata", async (req, res) => {
     try {
-        let users = await userModel.find()
+        let users = await UserModel.find()
         res.send(users)
     } catch (err) {
         res.send({ "msg": "Users not found" })
